@@ -22,7 +22,7 @@ func FindInterfaces(deviceName string) string {
 			Found = true
 			fmt.Println("Network interface found: ", ifDevice.Name)
 			fmt.Println("Network interface description: ", ifDevice.Description)
-			fmt.Println("Network interface addresses: ", ifDevice.Addresses)
+			fmt.Println("Network interface addresses: ", ifDevice.Addresses[0].IP.String())
 		}
 	}
 
