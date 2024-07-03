@@ -1,4 +1,4 @@
-module snifferMyNetwork.go
+module github.com/pdaambrosio/tools
 
 go 1.21.8
 
