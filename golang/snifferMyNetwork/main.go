@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/pdaambrosio/tools/src"
+	"github.com/pdaambrosio/tools/snifferMyNetwork/src"
 )
 
 // The main function prompts the user to enter a network interface name and BPF filter, then calls
