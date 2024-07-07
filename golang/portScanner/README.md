@@ -20,7 +20,7 @@ The `portScanner` is a command-line tool written in Go that allows you to scan f
 3. Navigate to the `portScanner` directory.
 4. Build the executable by running the following command:
 
-    ```
+    ```shell
     go build -o portScannerV1
     ```
 
@@ -30,7 +30,7 @@ The `portScanner` is a command-line tool written in Go that allows you to scan f
 
 To scan for open ports on a host, use the following command:
 
-```
+```shell
 ./portScannerV1 -i <ip> -p <portRange>
 ```
 
@@ -43,12 +43,13 @@ Options:
 
 Scan for open ports on `192.168.10.1` using the default settings:
 
-```
+```shell
 ./portScannerV1 -i 192.168.10.1
+```
 
 Scan for open ports on `192.168.10.1` ports range `1-65535`:
 
-```
+```shell
 ./portScannerV1 -i 192.168.10.1 -p 65535
 ```
 
