@@ -19,9 +19,11 @@ The `portScanner` is a command-line tool written in Go that allows you to scan f
 2. Clone this repository to your local machine.
 3. Navigate to the `portScanner` directory.
 4. Build the executable by running the following command:
+
     ```
-    go build
+    go build -o portScannerV1
     ```
+
 5. Run the tool using the generated executable.
 
 ## Usage
@@ -29,34 +31,25 @@ The `portScanner` is a command-line tool written in Go that allows you to scan f
 To scan for open ports on a host, use the following command:
 
 ```
-./portScanner <host> [options]
+./portScannerV1 -i <ip> -p <portRange>
 ```
 
 Options:
 
-- `-p, --ports`: Specify a range of ports to scan (e.g., `1-100` or `80,443,8080`).
-- `-t, --tcp`: Scan using TCP protocol (default).
-- `-u, --udp`: Scan using UDP protocol.
-- `-v, --verbose`: Display detailed information about open ports.
+- `-i: Specify the IP address or hostname of the target machine.
+- `-p: Specify a range of ports to scan (e.g., 1024 are ports 1 to 1024).
 
 ## Examples
 
-Scan for open ports on `localhost` using the default settings:
+Scan for open ports on `192.168.10.1` using the default settings:
 
 ```
-./portScanner localhost
-```
+./portScannerV1 -i 192.168.10.1
 
-Scan for open ports on `example.com` using TCP protocol and ports `80` and `443`:
-
-```
-./portScanner example.com -p 80,443 -t
-```
-
-Scan for open ports on `192.168.0.1` using UDP protocol and ports `53-100`:
+Scan for open ports on `192.168.10.1` ports range `1-65535`:
 
 ```
-./portScanner 192.168.0.1 -p 53-100 -u
+./portScannerV1 -i 192.168.10.1 -p 65535
 ```
 
 ## License
