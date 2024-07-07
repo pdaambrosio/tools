@@ -5,9 +5,14 @@ import (
 	"net"
 )
 
-// The ScanPorts function scans a range of ports on a specified IP address to check for open ports.
+// The ScanPorts function scans a range of ports on a given IP address to check for open ports.
 func ScanPorts(ip string, portRange int) {
 	fmt.Println("Scanning IP: ", ip)
+
+	if net.ParseIP(ip) == nil {
+		fmt.Println("Invalid IP address")
+		return
+	}
 
 	for i := 1; i <= portRange; i++ {
 		address := fmt.Sprintf("%s:%d", ip, i)
