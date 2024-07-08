@@ -13,6 +13,14 @@ The `portScanner` is a command-line tool written in Go that allows you to scan f
 - Choose between TCP and UDP protocols
 - Display detailed information about open ports
 
+## Requirements
+
+- Go 1.16 or later
+
+## Version
+
+1.0 - Initial release of the `portScanner` tool (./portScannerV1 -i 192.168.15.13 -p 65536  0,83s user 1,78s system 98% cpu 2,651 total).
+
 ## Installation
 
 1. Make sure you have Go installed on your system.
