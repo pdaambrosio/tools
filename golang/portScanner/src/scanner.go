@@ -9,11 +9,6 @@ import (
 func ScanPorts(ip string, portRange int) {
 	fmt.Println("Scanning IP: ", ip)
 
-	if net.ParseIP(ip) == nil {
-		fmt.Println("Invalid IP address")
-		return
-	}
-
 	for i := 1; i <= portRange; i++ {
 		address := fmt.Sprintf("%s:%d", ip, i)
 		conn, err := net.Dial("tcp", address)
