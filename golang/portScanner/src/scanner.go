@@ -1,32 +1,40 @@
 package src
 
 import (
-	"fmt"
-	"net"
-	"sync"
+	"sort"
 )
 
-// The ScanPorts function scans a range of ports on a given IP address to check for open ports.
-func ScanPorts(ip string, portRange int) {
-	var wg sync.WaitGroup
-	fmt.Println("Scanning IP: ", ip)
+// The ScanPorts function scans a range of ports on a given IP address and returns a list of open
+// ports.
+func ScanPorts(ip string, portRange int) []int {
+	// Create a channel to hold the port numbers
+	portChan := make(chan int, portRange)
+	results := make(chan int, portRange)
+	var openPorts []int
 
-	for i := 1; i <= portRange; i++ {
-		wg.Add(1)
-		go func(j int) {
-			defer wg.Done()
-			address := fmt.Sprintf("%s:%d", ip, j)
-			conn, err := net.Dial("tcp", address)
-
-			if err != nil {
-				// Port is closed
-				fmt.Println("Port is closed or filtered: ", j)
-				return
-			}
-
-			conn.Close()
-			fmt.Printf("%d Open\n", j)
-		}(i)
+	// Start the worker goroutines
+	for i := 0; i < 100; i++ {
+		go Worker(portChan, ip, results)
 	}
-	wg.Wait()
+
+	// Send the port numbers to the worker goroutines
+	for i := 1; i <= portRange; i++ {
+		portChan <- i
+	}
+
+	// Close the portChan channel
+	close(portChan)
+
+	// Collect the results
+	for i := 1; i <= portRange; i++ {
+		port := <-results
+		if port != 0 {
+			openPorts = append(openPorts, port)
+		}
+	}
+
+	// Sort the openPorts slice
+	sort.Ints(openPorts)
+
+	return openPorts
 }

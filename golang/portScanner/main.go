@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 
 	"github.com/pdaambrosio/tools/portScanner/src"
 )
@@ -25,6 +26,7 @@ func main() {
 		return
 	}
 
-
-	src.ScanPorts(ip, portRange)
+	for _, port := range src.ScanPorts(ip, portRange) {
+		fmt.Printf("Port %d is open\n", port)
+	}
 }
